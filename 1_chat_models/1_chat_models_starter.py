@@ -1,5 +1,6 @@
 import os
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -12,6 +13,26 @@ llm = ChatGoogleGenerativeAI(
     temperature=0.7
 )
 
-results = llm.invoke("who is ibrahim traore")
+chat_history = []
 
-print(results)
+system_message = SystemMessage(content="You are a helpful ai assistant(you give me short answers)")
+chat_history.append(system_message)
+
+while True:
+    querry = input("You: ")
+
+    if querry == "exit":
+        break
+
+    chat_history.append(HumanMessage(content=querry))
+
+    response = llm.invoke(chat_history)
+    chat_history.append(AIMessage(content=response.content))
+
+    print(input(f"AI: {response.content}"))
+
+    
+
+
+
+
