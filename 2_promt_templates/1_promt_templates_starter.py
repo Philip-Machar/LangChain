@@ -12,11 +12,13 @@ llm = ChatGoogleGenerativeAI(
     temperature=0.7
 )
 
-#prompt template
-message = [("system", "you are a comedian who tells jokes about {topic}"), ("human", "tell me a joke about {joke}")]
-
 #converting prompt template into a form langchain can understand
-prompt_template = ChatPromptTemplate.from_messages(message)
+prompt_template = ChatPromptTemplate.from_messages(
+    [
+        ("system", "you are a comedian who tells jokes about {topic}"), 
+        ("human", "tell me a joke about {joke}")
+    ]
+)
 
 #populating the variables in the prompt and assigning the final prompt with everythig done to variable prompt
 prompt = prompt_template.invoke({"topic": "animals", "joke": "elephant"})
