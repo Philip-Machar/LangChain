@@ -32,5 +32,6 @@ chain = RunnableSequence(first=format_prompt, middle=[invoke_model], last=parse_
 #run the chain
 response = chain.invoke({"topic": "soccer", "factCount": 2})
 
+#output
 print(response)
 

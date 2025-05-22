@@ -21,7 +21,7 @@ prompt_template = ChatPromptTemplate(
     ]
 )
 
-#creating a chain using langchain
+#creating a chain using langchain and displaying only the content using string output parser function
 chain = prompt_template | llm | StrOutputParser()
 
 #adding values to the chain and printing the results
